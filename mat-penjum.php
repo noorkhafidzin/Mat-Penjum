@@ -35,6 +35,7 @@ include 'mat-penjum-dbconn.php';
                     </form>
                     <?php
                 } else {
+                    if ($_COOKIE['lives'] > 0) {
                     echo "<p class='text-center'>Selamat datang, <span class='text-success fw-bolder'>" . $_COOKIE['username'] . "</span></p>";
                     echo "<p class='text-center'>Lives : <span class='text-danger'>" . $_COOKIE['lives'] . "</span></p>";
                     echo "<p class='text-center'>Score : <span class='text-primary'>" . $_COOKIE['score'] . "</span></p>";
@@ -50,7 +51,6 @@ include 'mat-penjum-dbconn.php';
                     if (isset($_COOKIE['salah'])) {
                         echo "<p class='text-danger text-center'>Jawaban anda salah</p>";
                     }
-                    if ($_COOKIE['lives'] > 0) {
                         if (isset($_POST['submit2'])) {
                             $jawab = $_POST['jawab'];
                             if ($jawab == $_COOKIE['result']) {
@@ -96,7 +96,8 @@ include 'mat-penjum-dbconn.php';
                         }
                         echo "<br>";
                         echo '<a href="?main-lagi">Main Lagi</a>' . ' | ';
-                        echo '<a href="?hof">Hall of Fame</a>';
+                        echo '<a href="?hof">Hall of Fame</a>' . ' | ';
+                        echo '<a href="?exit">Keluar</a>';
                         echo "<br>";
                         if (isset($_GET['main-lagi'])) {
                             $nambah = 3;
@@ -116,6 +117,12 @@ include 'mat-penjum-dbconn.php';
                                 echo "<tr><td>" . $peringkat . "</td><td>" . $data['ID'] . "</td><td>" . $data['Nama'] . "</td><td>" . $data['Score'] . "</td><td>" . $data['tgl'] . "</td></tr>";
                                 $peringkat++;
                             }
+                        }
+                        if (isset($_GET['exit'])) {
+                            $resetnama = $_COOKIE['username'];
+                            setcookie('username', $resetnama, time() - 3600);
+                            header('Location: mat-penjum.php');
+                            exit;
                         }
                     }
                 }
