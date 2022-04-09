@@ -12,9 +12,5 @@
 - Jika Game Over, maka data Anda akan tersimpan di database.
 - Anda dapat melihat Hall of Fame dari 10 top player dalam database.
 
-# Live Demo
+# Live Preview
 Silahkan kunjungi link berikut untuk memainkan gamenya (http://dizzw.rf.gd/project/game/mat-penjum/mat-penjum.php).
-
-# TODO
-- Membuat fitur login.
-- etc.
